@@ -5,3 +5,5 @@ back-end/dist
 back-end/.env
 
 front-end/node_modules
+
+front-end/build
