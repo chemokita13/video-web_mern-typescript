@@ -1,0 +1,32 @@
+@api = http://localhost:8000
+
+### GET ALL VIDEOS
+GET {{api}}/videos
+
+### GET ONE VIDEO
+POST  {{api}}/videos/get/[:id]
+
+### NEW VIDEO
+POST {{api}}/videos/new
+Content-Type: application/json
+
+{
+    "title":"MY NEW VIDEO",
+    "description": "my description",
+    "url": "https://www.youtube.com/HOW_TO_HELLOWORLD"
+}
+
+### DELETE VIDEO
+DELETE  {{api}}/videos/delete/[:id]
+
+### UPDATE VIDEO
+PUT {{api}}/videos/update/[:id]
+Content-Type: application/json
+
+{
+    "title":"MY NEW AND UPDATED VIDEO",
+    "description": "my description",
+    "url": "https://www.youtube.com/HOW_TO_CODE"
+}
+
+

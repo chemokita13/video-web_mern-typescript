@@ -1,4 +1,4 @@
-import { Schema, Model, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const videoSchema = new Schema(
   {
@@ -15,6 +15,7 @@ const videoSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
   },
   {
