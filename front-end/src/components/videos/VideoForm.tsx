@@ -1,13 +1,16 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Video } from './Video';
-import { sendVideo } from './VideoService';
-import { useNavigate } from 'react-router-dom';
+import { getVideo, sendVideo, updateVideo } from './VideoService';
+import { useNavigate, useParams } from 'react-router-dom';
 
 type InputChange = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
+type AxiosData = { status: number; data?: Video };
+
 function VideoForm() {
   const navigate = useNavigate();
+  const params = useParams();
 
   const [VideoForm, setVideoForm] = useState<Video>({ title: '', url: '' });
 
@@ -17,15 +20,41 @@ function VideoForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await sendVideo(VideoForm);
-    if (res.status !== 200) {
-      console.log('holaa');
-      toast.error('An error happend creiting this video');
+
+    if (!params.id) {
+      const res = await sendVideo(VideoForm);
+      if (res.status !== 200) {
+        toast.error('An error happend creating this video');
+      } else {
+        toast.success('New video added!');
+        navigate('/');
+      }
     } else {
-      toast.success('New video added!');
-      navigate('/');
+      const res = await updateVideo(params.id, VideoForm);
+      if (res.status !== 200) {
+        toast.error('An error happend updating this video');
+      } else {
+        console.log(res, VideoForm);
+        toast.success('New video updated!');
+        navigate('/');
+      }
     }
   };
+
+  const loadVideoData = async (id: string) => {
+    const res: AxiosData = await getVideo(id);
+    if (!res.data) {
+      toast.error('An error happend loading this video');
+      navigate('/');
+      return;
+    }
+    const { title, description, url } = res.data;
+    setVideoForm(description ? { title, url, description } : { title, url });
+  };
+
+  useEffect(() => {
+    params.id && loadVideoData(params.id);
+  }, [params]);
 
   return (
     <div className="row">
@@ -33,7 +62,9 @@ function VideoForm() {
         <div className="card">
           <div className="card-body">
             <div className="card-title">
-              <h1 className="text-center">New video</h1>
+              <h1 className="text-center">
+                {params.id ? 'Update video' : 'New video'}
+              </h1>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="form-group p-1">
@@ -45,6 +76,7 @@ function VideoForm() {
                   autoFocus
                   required
                   onChange={handleInputChange}
+                  defaultValue={VideoForm.title}
                 />
               </div>
               <div className="form-group p-1">
@@ -55,6 +87,7 @@ function VideoForm() {
                   className="form-control"
                   required
                   onChange={handleInputChange}
+                  defaultValue={VideoForm.url}
                 />
               </div>
               <div className="form-group p-1">
@@ -64,11 +97,12 @@ function VideoForm() {
                   className="form-control"
                   placeholder=" Write a description"
                   onChange={handleInputChange}
+                  defaultValue={VideoForm.description}
                 />
               </div>
               <div className="form-group d-flex justify-content-center p-1">
                 <button type="submit" className="btn btn-outline-light pd-3">
-                  Create video
+                  {params.id ? 'Update video' : 'New video'}
                 </button>
               </div>
             </form>

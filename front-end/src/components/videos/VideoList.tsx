@@ -19,7 +19,7 @@ function VideoList() {
   return (
     <div className="row">
       {Videos.map((video) => (
-        <VideoItem video={video} key={video.id}/>
+        <VideoItem video={video} key={video._id} loadVideo={loadVideos} />
       ))}
     </div>
   );

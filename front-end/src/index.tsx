@@ -12,10 +12,12 @@ import 'bootswatch/dist/morph/bootstrap.min.css';
 import './index.css';
 import NavBar from './components/navBar/NavBar';
 import { ToastContainer } from 'react-toastify';
+import Footer from './components/footer/Footer';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+document.title = 'Video collection';
 root.render(
   <React.StrictMode>
     <Router>
@@ -26,10 +28,10 @@ root.render(
           <Route path="/new-video" element={<VideoForm />} />
           <Route path="/update-video/:id" element={<VideoForm />} />
           <Route path="*" element={<h1>NOT FOUND</h1>} />
-
         </Routes>
         <ToastContainer />
       </div>
+      <Footer />
     </Router>
   </React.StrictMode>,
 );
