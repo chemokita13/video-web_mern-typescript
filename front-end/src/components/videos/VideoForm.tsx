@@ -18,7 +18,7 @@ function VideoForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await sendVideo(VideoForm);
-    if (res.status !== 204) {
+    if (res.status !== 200) {
       console.log('holaa');
       toast.error('An error happend creiting this video');
     } else {

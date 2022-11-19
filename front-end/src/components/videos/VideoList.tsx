@@ -17,9 +17,9 @@ function VideoList() {
   }, []);
 
   return (
-    <div className="container">
+    <div className="row">
       {Videos.map((video) => (
-        <VideoItem video={video} />
+        <VideoItem video={video} key={video.id}/>
       ))}
     </div>
   );
