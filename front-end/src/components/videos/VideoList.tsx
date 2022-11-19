@@ -17,7 +17,7 @@ function VideoList() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       {Videos.map((video) => (
         <VideoItem video={video} />
       ))}

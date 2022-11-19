@@ -7,9 +7,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import VideoList from './components/videos/VideoList';
 import VideoForm from './components/videos/VideoForm';
 
+import 'react-toastify/dist/ReactToastify.css';
 import 'bootswatch/dist/morph/bootstrap.min.css';
 import './index.css';
 import NavBar from './components/navBar/NavBar';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -18,10 +20,13 @@ root.render(
   <React.StrictMode>
     <Router>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<VideoList />} />
-        <Route path="/new-video" element={<VideoForm />} />
-      </Routes>
+      <div className="container p-5">
+        <Routes>
+          <Route path="/" element={<VideoList />} />
+          <Route path="/new-video" element={<VideoForm />} />
+        </Routes>
+        <ToastContainer />
+      </div>
     </Router>
   </React.StrictMode>,
 );
