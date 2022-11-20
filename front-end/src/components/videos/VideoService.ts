@@ -3,7 +3,7 @@ import { Video } from './Video';
 //import dotenv from 'dotenv';
 //dotenv.config();
 
-const API = process.env.API_URI || 'http://localhost:8000';
+const API = 'http://64.227.32.220:8000' /*my personal API if u want to use it*/|| process.env.API_URI || 'http://localhost:8000';
 
 export const getVideos = async () => await axios.get(API + '/videos');
 
