@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Video } from './Video';
-import dotenv from 'dotenv';
-dotenv.config();
+//import dotenv from 'dotenv';
+//dotenv.config();
 
 const API = process.env.API_URI || 'http://localhost:8000';
 
