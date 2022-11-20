@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { Video } from './Video';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const API = 'http://localhost:8000';
+const API = process.env.API_URI || 'http://localhost:8000';
 
 export const getVideos = async () => await axios.get(API + '/videos');
 
