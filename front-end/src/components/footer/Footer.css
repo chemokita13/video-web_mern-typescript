@@ -1,7 +1,7 @@
 #gh-btn {
-  transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 #gh-btn:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }

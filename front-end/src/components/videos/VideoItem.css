@@ -1,4 +1,9 @@
 .video-card:hover {
-  border: 1px solid #333;
-  cursor: pointer;
+    border: 1px solid #333;
+    cursor: pointer;
+}
+
+.video-card:hover #video-title {
+    color: #333;
+    transform: scale(1.1);
 }

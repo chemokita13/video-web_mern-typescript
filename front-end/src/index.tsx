@@ -15,25 +15,25 @@ import { ToastContainer } from 'react-toastify';
 import Footer from './components/footer/Footer';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
+    document.getElementById('root') as HTMLElement,
 );
 document.title = 'Video collection';
 root.render(
-  <React.StrictMode>
-    <Router>
-      <NavBar />
-      <div className="container p-5">
-        <Routes>
-          <Route path="/" element={<VideoList />} />
-          <Route path="/new-video" element={<VideoForm />} />
-          <Route path="/update-video/:id" element={<VideoForm />} />
-          <Route path="*" element={<h1>NOT FOUND</h1>} />
-        </Routes>
-        <ToastContainer />
-      </div>
-      <Footer />
-    </Router>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <Router>
+            <NavBar />
+            <div className="container p-5" id="generalContainer">
+                <Routes>
+                    <Route path="/" element={<VideoList />} />
+                    <Route path="/new-video" element={<VideoForm />} />
+                    <Route path="/update-video/:id" element={<VideoForm />} />
+                    <Route path="*" element={<h1>NOT FOUND</h1>} />
+                </Routes>
+                <ToastContainer />
+            </div>
+            <Footer />
+        </Router>
+    </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function

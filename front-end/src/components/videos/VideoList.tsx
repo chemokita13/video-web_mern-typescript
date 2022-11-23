@@ -5,24 +5,28 @@ import VideoItem from './VideoItem';
 import { getVideos } from './VideoService';
 
 function VideoList() {
-  const [Videos, setVideos] = useState<Video[]>([]);
+    const [Videos, setVideos] = useState<Video[]>([]);
 
-  const loadVideos = async () => {
-    const res = await getVideos();
-    setVideos(res.data);
-  };
+    const loadVideos = async () => {
+        const res = await getVideos();
+        setVideos(res.data);
+    };
 
-  useEffect(() => {
-    loadVideos();
-  }, []);
+    useEffect(() => {
+        loadVideos();
+    }, []);
 
-  return (
-    <div className="row">
-      {Videos.map((video) => (
-        <VideoItem video={video} key={video._id} loadVideo={loadVideos} />
-      ))}
-    </div>
-  );
+    return (
+        <div className="row">
+            {Videos.map((video) => (
+                <VideoItem
+                    video={video}
+                    key={video._id}
+                    loadVideo={loadVideos}
+                />
+            ))}
+        </div>
+    );
 }
 
 export default VideoList;
