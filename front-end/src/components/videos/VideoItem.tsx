@@ -16,7 +16,7 @@ function VideoItem({ video, loadVideo }: Props) {
     const navigate = useNavigate();
     const handleDelete = async (id: string) => {
         const res = await deleteVideo(id);
-        if (res.status != 200) {
+        if (res.status !== 200) {
             toast.error('An error happened.');
             alert(1);
         } else {
